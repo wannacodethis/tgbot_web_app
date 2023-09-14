@@ -483,7 +483,7 @@
             Telegram.WebApp.ready();
             Telegram.WebApp.MainButton.setParams({
                 //text: window.location.hash === 'initialization' ? 'Создать учетную запись' : 'Обновить учетную запись',
-                text: window.location.href + ' ' + window.location.hash
+                text: window.location.href + ' ' + window.location.hash,
                 is_visible: true
             }).onClick(DemoApp.close);
         },
