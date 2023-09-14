@@ -480,6 +480,7 @@
         init(options) {
             document.body.style.visibility = '';
             Telegram.WebApp.ready();
+            telegram.WebApp.disableClosingConfirmation();
             Telegram.WebApp.MainButton.setParams({
                 text: window.location.hash.includes('initialization') ? 'Создать учетную запись' : 'Обновить учетную запись',
                 is_visible: true
@@ -852,7 +853,6 @@
     const workerTypeSel = document.getElementById('worker_type');
     workerTypeSel.value = 'vis_form';
     workerTypeSel.addEventListener('change', function(e) {
-    DemoApp.close()
         const workerType = e.target.value;
         const visForm = document.getElementById('vis_form');
         const desForm = document.getElementById('des_form');
