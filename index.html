@@ -470,7 +470,6 @@
      * It contains basic examples of how to use the API
      * Note: all requests to backend are disabled in this demo, you should use your own backend
      */
-alert( window.location.href + ' ' + window.location.hash )
     const DemoApp = {
 
         initData: Telegram.WebApp.initData || '',
@@ -482,7 +481,7 @@ alert( window.location.href + ' ' + window.location.hash )
             document.body.style.visibility = '';
             Telegram.WebApp.ready();
             Telegram.WebApp.MainButton.setParams({
-                text: window.location.hash === 'initialization' ? 'Создать учетную запись' : 'Обновить учетную запись',
+                text: window.location.hash.includes('initialization') ? 'Создать учетную запись' : 'Обновить учетную запись',
                 is_visible: true
             }).onClick(DemoApp.close);
         },
