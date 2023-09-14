@@ -490,7 +490,8 @@
         },
         close() {
             const workerTypeSel = document.getElementById('worker_type');
-            Telegram.WebApp.sendData(workerTypeSel === 'vis' ? DemoApp.makeVisData() : DemoApp.makeDesData());
+            alert(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()))
+            Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
             Telegram.WebApp.close();
         },
         toggleMainButton(el) {
@@ -614,13 +615,13 @@
             t.experience = document.querySelector('#vis_experience').value;
             t.min_style_price = document.querySelector('#min_style_price').value;
             t.classic_style_price = document.querySelector('#classic_style_price').value;
-            return JSON.stringify(t);
+            return t;
         },
         makeDesData(){
             let t = DemoApp.makeCommonData();
             t.payment = document.querySelector('#des_payment').value;
             t.deadline = document.querySelector('#des_deadline').value;
-            return JSON.stringify(t);
+            return t;
         },
 
 
@@ -849,7 +850,7 @@
      * This part of code is used to initialize the demo app and set up the event handlers we need.
      */
     const workerTypeSel = document.getElementById('worker_type');
-    workerTypeSel.value = 'vis';
+    workerTypeSel.value = 'vis_form';
     workerTypeSel.addEventListener('change', function(e) {
     DemoApp.close()
         const workerType = e.target.value;
