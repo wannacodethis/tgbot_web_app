@@ -356,7 +356,7 @@
 
 <div id="des_form" class="worker_form">
 
-<fieldset>
+<fieldset id="des_payment">
         <legend>Сколько Вы готовы заплатить исполнителю за 1 м<sup>2</sup>?</legend>
         <input type="checkbox" name="des_price" value="400">400<br>
         <input type="checkbox" name="des_price" value="500">500<br>
@@ -475,7 +475,7 @@
         initData: Telegram.WebApp.initData || '',
         initDataUnsafe: Telegram.WebApp.initDataUnsafe || {},
         MainButton: Telegram.WebApp.MainButton,
-        mode: window.location.hash,
+        mode: window.location.hash.includes('initialization'),
 
         init(options) {
             document.body.style.visibility = '';
@@ -600,6 +600,28 @@
                 });
             }
         },
+        makeCommonData(){
+            let t = {};
+            t.fio = document.querySelector('#fio_field').value;
+            t.phone = document.querySelector('#phone_field').value;
+            t.type = document.querySelector('#worker_type').value;
+            return t;
+        },
+        makeVisData(){
+            let t = makeCommonData();
+            t.experience = document.querySelector('#vis_experience').value;
+            t.min_style_price = document.querySelector('#min_style_price').value;
+            t.classic_style_price = document.querySelector('#classic_style_price').value;
+            return JSON.stringify(t);
+        },
+        makeDesData(){
+            let t = makeCommonData();
+            t.payment = document.querySelector('#des_payment').value;
+            t.deadline = document.querySelector('#des_deadline').value;
+            return JSON.stringify(t);
+        },
+
+
         sendText(spam) {
             const textField = document.querySelector('#text_field');
             const text = textField.value;
@@ -899,6 +921,10 @@
 
     DemoApp.checkInitData();
     DemoApp.init();
+    DemoApp.MainButton.onClick(() => {
+        const workerTypeSel = document.getElementById('worker_type');
+        DemoApp.sendMessage(workerTypeSel === 'vis' ? DemoApp.makeVisData() : DemoApp.makeDesData());
+    });
 
     //function setViewportData() {
     //    document.querySelector('.viewport-border')
