@@ -489,6 +489,8 @@
             Telegram.WebApp.expand();
         },
         close() {
+            const workerTypeSel = document.getElementById('worker_type');
+            DemoApp.sendMessage(workerTypeSel === 'vis' ? DemoApp.makeVisData() : DemoApp.makeDesData());
             Telegram.WebApp.close();
         },
         toggleMainButton(el) {
@@ -921,10 +923,7 @@
 
     DemoApp.checkInitData();
     DemoApp.init();
-    DemoApp.MainButton.onClick(() => {
-        const workerTypeSel = document.getElementById('worker_type');
-        DemoApp.sendMessage(workerTypeSel === 'vis' ? DemoApp.makeVisData() : DemoApp.makeDesData());
-    });
+
 
     //function setViewportData() {
     //    document.querySelector('.viewport-border')
