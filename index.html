@@ -376,6 +376,8 @@
 
 </div>
 
+<button id="confirm_btn" onclick="DemoApp.sendFinalData();">Создать учетную запись</button>
+
 <!--section id="top_sect" class="second">
     <button id="main_btn" onclick="DemoApp.sendMessage('');">Send «Hello, World!»</button>
     <button id="with_webview_btn" onclick="DemoApp.sendMessage('', true);">Send «Hello, World!» with inline webview button</button>
@@ -480,7 +482,7 @@
         init(options) {
             document.body.style.visibility = '';
             Telegram.WebApp.ready();
-            telegram.WebApp.disableClosingConfirmation();
+            Telegram.WebApp.disableClosingConfirmation();
             Telegram.WebApp.MainButton.setParams({
                 text: window.location.hash.includes('initialization') ? 'Создать учетную запись' : 'Обновить учетную запись',
                 is_visible: true
@@ -490,9 +492,9 @@
             Telegram.WebApp.expand();
         },
         close() {
-            const workerTypeSel = document.getElementById('worker_type');
-            alert(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()))
-            Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
+           // const workerTypeSel = document.getElementById('worker_type');
+           // alert(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()))
+           // Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
             Telegram.WebApp.close();
         },
         toggleMainButton(el) {
@@ -506,6 +508,11 @@
             }
         },
 
+        sendFinalData(){
+            const workerTypeSel = document.getElementById('worker_type');
+        // alert(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()))
+            Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
+        },
         // actions
         sendMessage(msg_id, with_webview) {
             if (!DemoApp.initDataUnsafe.query_id) {
@@ -877,6 +884,9 @@
         .replace(/(-\d{4})\d+?$/, '$1');
     }
 
+
+    const confirm_btn = document.getElementById('confirm_btn');
+    confirm_btn.textContent = DemoApp.mode ? 'Создать учетную запись' : 'Обновить учетную запись';
 
 
 
