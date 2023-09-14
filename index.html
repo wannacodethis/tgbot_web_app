@@ -492,9 +492,9 @@
             Telegram.WebApp.expand();
         },
         close() {
-           // const workerTypeSel = document.getElementById('worker_type');
+            const workerTypeSel = document.getElementById('worker_type');
            // alert(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()))
-           // Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
+            Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
             Telegram.WebApp.close();
         },
         toggleMainButton(el) {
