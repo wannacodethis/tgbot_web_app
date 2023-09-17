@@ -613,7 +613,7 @@
             let t = {};
             t.fio = document.querySelector('#fio_field').value;
             t.phone = document.querySelector('#phone_field').value;
-            t.type = document.querySelector('#worker_type').value;
+            //t.type = document.querySelector('#worker_type').value;
             return t;
         },
         makeVisData(){
@@ -625,7 +625,16 @@
         },
         makeDesData(){
             let t = DemoApp.makeCommonData();
-            t.payment = document.querySelector('#des_payment').value;
+
+            let all_payment_id = document.querySelectorAll('input[name="des_price"]:checked');
+            let prices = [];
+
+            for(let i = 0, l = all_payment_id.length; i < l;  i++){
+                prices.push(all_payment_id[i].value);
+            }
+            
+            //t.payment = document.querySelector('#des_payment').value;
+            t.payment = JSON.stringify(prices);
             t.deadline = document.querySelector('#des_deadline').value;
             return t;
         },
