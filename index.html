@@ -506,10 +506,25 @@
             }
         },
 
-        sendFinalData(){
-            const workerTypeSel = document.getElementById('worker_type');
+        //sendFinalData(){
+        //    const workerTypeSel = document.getElementById('worker_type');
         // alert(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()))
-            Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
+        //    Telegram.WebApp.sendData(JSON.stringify(workerTypeSel.value === 'vis_form' ? DemoApp.makeVisData() : DemoApp.makeDesData()));
+        //},
+        initFromDb(){
+            if(window.location.hash.includes('update')){
+                const urlParams = new URLSearchParams(window.location.hash.substr(1));
+                const obj = JSON.parse(urlParams.get('update'));
+                document.querySelector('#fio_field').value = obj.fio;
+                document.querySelector('#phone_field').value = obj.phone;
+                if(obj.valueType === "VisInfo"){
+                    document.querySelector('#vis_experience').value = obj.experience;
+                    document.querySelector('#min_style_price').value = obj.min_style_price;
+                    document.querySelector('#classic_style_price').value = obj.classic_style_price;
+                }
+
+
+            }
         },
         // actions
         sendMessage(msg_id, with_webview) {
@@ -946,6 +961,7 @@
 
     DemoApp.checkInitData();
     DemoApp.init();
+    DemoApp.initFromDb();
 
 
     //function setViewportData() {
