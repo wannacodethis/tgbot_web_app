@@ -620,8 +620,10 @@
             let t = DemoApp.makeCommonData();
             t.valueType = "VisInfo";
             t.experience = document.querySelector('#vis_experience').value;
-            t.min_style_price = parseInt(document.querySelector('#min_style_price').value ? document.querySelector('#min_style_price').value : "0", 10);
-            t.classic_style_price = parseInt(document.querySelector('#classic_style_price').value ? document.querySelector('#classic_style_price').value : "0", 10);
+            let v = parseInt(document.querySelector('#min_style_price').value, 10);
+            t.min_style_price = v ? v : 0;
+            v = parseInt(document.querySelector('#classic_style_price').value, 10);
+            t.classic_style_price = v ? v : 0;
             return t;
         },
         makeDesData(){
