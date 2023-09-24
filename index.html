@@ -618,6 +618,7 @@
         },
         makeVisData(){
             let t = DemoApp.makeCommonData();
+            t.valueType = "VisInfo";
             t.experience = document.querySelector('#vis_experience').value;
             t.min_style_price = document.querySelector('#min_style_price').value;
             t.classic_style_price = document.querySelector('#classic_style_price').value;
@@ -634,6 +635,7 @@
             }
             
             //t.payment = document.querySelector('#des_payment').value;
+            t.valueType = "DesInfo";
             t.payment = JSON.stringify(prices);
             t.deadline = document.querySelector('#des_deadline').value;
             return t;
