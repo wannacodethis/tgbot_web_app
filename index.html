@@ -515,6 +515,10 @@
             if(window.location.hash.includes('update')){
                 const urlParams = new URLSearchParams(window.location.hash.substr(1));
                 const obj = JSON.parse(urlParams.get('update'));
+
+//const str = '{"fio": "frvever","phone": "(987) 756-4534","valueType": "DesInfo","payment": "[600,700,800]","deadline": "month_and_more"}'
+//const obj = JSON.parse(str)
+
                 const workerTypeSel = document.getElementById('worker_type');
 
                 const visForm = document.getElementById('vis_form');
@@ -530,12 +534,12 @@
                     document.querySelector('#classic_style_price').value = obj.classic_style_price;
                     workerTypeSel.value = 'vis_form';
                 } else if (obj.valueType === "DesInfo"){
-                    workerTypeSel.value = 'des_from';
+                    workerTypeSel.value = 'des_form';
 
                     let all_payment_id = document.querySelectorAll('input[name="des_price"]');
                     let prices = JSON.parse(obj.payment);
                     for(let i = 0, l = all_payment_id.length; i < l;  i++){
-                        all_payment_id[i].checked = prices.find((price) => {String(price) === all_payment_id[i].value});
+                        all_payment_id[i].checked = prices.find((price) => { return String(price) === all_payment_id[i].value;});
                     }
                     document.querySelector('#des_deadline').value = obj.deadline;
                 }
