@@ -516,6 +516,12 @@
                 const urlParams = new URLSearchParams(window.location.hash.substr(1));
                 const obj = JSON.parse(urlParams.get('update'));
                 const workerTypeSel = document.getElementById('worker_type');
+
+                const visForm = document.getElementById('vis_form');
+                const desForm = document.getElementById('des_form');
+                visForm.style.display="none";
+                desForm.style.display="none";
+
                 document.querySelector('#fio_field').value = obj.fio;
                 document.querySelector('#phone_field').value = obj.phone;
                 if(obj.valueType === "VisInfo"){
@@ -533,6 +539,7 @@
                     }
                     document.querySelector('#des_deadline').value = obj.deadline;
                 }
+                document.getElementById(workerTypeSel.value).style.display="block";
             }
         },
         // actions
