@@ -358,8 +358,7 @@
 
 <div class="sect_row">Площадь помещений для визуализации, м<sup>2</sup>:
     <input type="text"
-           id="work_area"
-           value="10"
+           id="des_work_area"
            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
            required />
 </div>
@@ -543,9 +542,8 @@
                     workerTypeSel.value = 'vis_form';
                 } else if (obj.valueType === "DesInfo"){
                     workerTypeSel.value = 'des_form';
-
+                    document.querySelector('#des_work_area').value = obj.work_area;
                     let all_payment_id = document.querySelectorAll('input[name="des_price"]');
-                    document.querySelector('#work_area').value = obj.work_area;
                     let prices = JSON.parse(obj.payment);
                     for(let i = 0, l = all_payment_id.length; i < l;  i++){
                         all_payment_id[i].checked = prices.find((price) => { return String(price) === all_payment_id[i].value;});
@@ -682,8 +680,8 @@
             
             //t.payment = document.querySelector('#des_payment').value;
             t.valueType = "DesInfo";
-            let v = parseInt(document.querySelector('#work_area').value, 10);
-            t.work_area = v;
+            let v = parseInt(document.querySelector('#des_work_area').value, 10);
+            t.work_area = v && v > 0 ? v : 1;
             t.payment = JSON.stringify(prices);
             t.deadline = document.querySelector('#des_deadline').value;
             return t;
