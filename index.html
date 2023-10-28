@@ -540,12 +540,12 @@
                     document.querySelector('#vis_experience').value = obj.experience;
                     document.querySelector('#min_style_price').value = obj.min_style_price;
                     document.querySelector('#classic_style_price').value = obj.classic_style_price;
-                    document.querySelector('#work_area').value = obj.work_area;
                     workerTypeSel.value = 'vis_form';
                 } else if (obj.valueType === "DesInfo"){
                     workerTypeSel.value = 'des_form';
 
                     let all_payment_id = document.querySelectorAll('input[name="des_price"]');
+                    document.querySelector('#work_area').value = obj.work_area;
                     let prices = JSON.parse(obj.payment);
                     for(let i = 0, l = all_payment_id.length; i < l;  i++){
                         all_payment_id[i].checked = prices.find((price) => { return String(price) === all_payment_id[i].value;});
