@@ -356,6 +356,14 @@
 
 <div id="des_form" class="worker_form">
 
+<div class="sect_row">Площадь помещений для визуализации, м<sup>2</sup>:
+    <input type="text"
+           id="work_area"
+           value="10"
+           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+           required />
+</div>
+
 <fieldset id="des_payment">
         <legend>Сколько Вы готовы заплатить исполнителю за 1 м<sup>2</sup>?</legend>
         <input type="checkbox" name="des_price" value="400">400<br>
@@ -532,6 +540,7 @@
                     document.querySelector('#vis_experience').value = obj.experience;
                     document.querySelector('#min_style_price').value = obj.min_style_price;
                     document.querySelector('#classic_style_price').value = obj.classic_style_price;
+                    document.querySelector('#work_area').value = obj.work_area;
                     workerTypeSel.value = 'vis_form';
                 } else if (obj.valueType === "DesInfo"){
                     workerTypeSel.value = 'des_form';
@@ -659,6 +668,8 @@
             t.min_style_price = v ? v : 0;
             v = parseInt(document.querySelector('#classic_style_price').value, 10);
             t.classic_style_price = v ? v : 0;
+            v = parseInt(document.querySelector('#work_area').value, 10);
+            t.work_area = v;
             return t;
         },
         makeDesData(){
