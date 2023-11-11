@@ -319,6 +319,12 @@
              required/>
 </div>
 
+<div class="sect_row">Ваш email (для отправки чеков):
+    <input type="email" id="email_field" size="30"/>
+</div>
+
+
+
 
 <div class="sect_row">Ваш род деятельности: <select id="worker_type">
     <option value="vis_form" selected>Визуализатор</option>
@@ -535,6 +541,7 @@
 
                 document.querySelector('#fio_field').value = obj.fio;
                 document.querySelector('#phone_field').value = obj.phone;
+                document.querySelector('#email_field').value = obj.email;
                 if(obj.valueType === "VisInfo"){
                     document.querySelector('#vis_experience').value = obj.experience;
                     document.querySelector('#min_style_price').value = obj.min_style_price;
@@ -655,6 +662,7 @@
             let t = {};
             t.fio = document.querySelector('#fio_field').value;
             t.phone = document.querySelector('#phone_field').value;
+            t.email = document.querySelector('#email_field').value;
             //t.type = document.querySelector('#worker_type').value;
             return t;
         },
