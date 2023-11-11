@@ -320,10 +320,8 @@
 </div>
 
 <div class="sect_row">Ваш email (для отправки чеков):
-    <input type="email" id="email_field" size="30"/>
+    <input type="text" id="email_field" placeholder="example@mail.ru"/>
 </div>
-
-
 
 
 <div class="sect_row">Ваш род деятельности: <select id="worker_type">
@@ -945,6 +943,19 @@
         .replace(/(\d{3})(\d)/, "$1-$2")
         .replace(/(-\d{4})\d+?$/, '$1');
     }
+
+
+    //const email_field = document.getElementById('email_field');
+    //email_field.addEventListener('input', handleEmailInput, false);
+    //function handleEmailInput (e) {
+    //  e.target.value = emailMask(e.target.value)
+    //}
+    //function emailMask (email) {
+    //  return email.replace(/^(.)(.*)(.@.*)$/,
+    //  (_, a, b, c) => a + b.replace(/./g, '*') + c);
+    //}
+
+
 
 
     //const confirm_btn = document.getElementById('confirm_btn');
