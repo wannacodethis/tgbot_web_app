@@ -328,7 +328,7 @@
     <option value="vis_form" selected>Визуализатор</option>
     <option value="des_form">Дизайнер</option>
 </select></div>
-
+<div class="sect_row" style="background: red;display:none;" id="attention_message">Внимание!При смене рода деятельности предыдущая запись в базе данных будет удалена!</div>
 </section>
 
 
@@ -923,9 +923,11 @@
         const workerType = e.target.value;
         const visForm = document.getElementById('vis_form');
         const desForm = document.getElementById('des_form');
+        const attentionMessage = document.getElementById('attention_message');
         visForm.style.display="none";
         desForm.style.display="none";
         document.getElementById(workerType).style.display="block";
+        attentionMessage.style.display="block";
     });
 
     document.getElementById('des_form').style.display="none";
