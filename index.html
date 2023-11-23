@@ -316,6 +316,7 @@
              name="phone_field"
              id="phone_field"
              placeholder="(для связи с вами при заказе)"
+             pattern="(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?"
              required/>
 </div>
 
@@ -915,6 +916,28 @@
 </script>
 
 <script type="application/javascript">
+    const mask = (selector) => {
+        function setMask() {
+            let matrix = '+7 ### ### ## ##';
+            let i = 1,
+                val = this.value.replace(/\D/g, '');
+
+            this.value = matrix.substr(0, 2) + matrix.substr(2).replace(/(?!\+)./g, function(a) {
+                return /[#\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
+            });
+        }
+
+        let inputs = document.querySelectorAll(selector);
+
+        inputs.forEach(input => {
+            if (!input.value) input.value = '+7';
+            input.addEventListener('input', setMask);
+            input.addEventListener('focus', setMask);
+            input.addEventListener('blur', setMask);
+        });
+    };
+
+
     /*
      * This part of code is used to initialize the demo app and set up the event handlers we need.
      */
@@ -932,19 +955,22 @@
 
     document.getElementById('des_form').style.display="none";
 
-    const phone_field = document.getElementById('phone_field');
-    phone_field.addEventListener('input', handlePhoneInput, false);
-    function handlePhoneInput (e) {
-      e.target.value = phoneMask(e.target.value)
-    }
+    mask('input[name="phone_field"]')
 
-    function phoneMask (phone) {
-      return phone.replace(/\D/g, '')
-        .replace(/^(\d)/, '($1')
-        .replace(/^(\(\d{3})(\d)/, '$1) $2')
-        .replace(/(\d{3})(\d)/, "$1-$2")
-        .replace(/(-\d{4})\d+?$/, '$1');
-    }
+    //const phone_field = document.getElementById('phone_field');
+    //phone_field.addEventListener('input', handlePhoneInput, false);
+    //function handlePhoneInput (e) {
+    //  e.target.value = phoneMask(e.target.value)
+    //}
+
+
+    //function phoneMask (phone) {
+    //  let s = phone.replace(/\D/g, '')
+    //    .replace(/^(\d)/, '($1')
+    //    .replace(/^(\(\d{3})(\d)/, '$1) $2')
+    //    .replace(/(\d{3})(\d)/, "$1-$2")
+    //    .replace(/(-\d{4})\d+?$/, '$1');
+    //}
 
 
     //const email_field = document.getElementById('email_field');
