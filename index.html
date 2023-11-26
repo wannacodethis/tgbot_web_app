@@ -176,7 +176,7 @@
             text-align: left;
         }
         li {
-            color: var(--tg-theme-hint-color, #a8a8a8);
+            color: var(--tg-theme-hint-color, #000000);
         }
         textarea {
             width: 100%;
@@ -304,9 +304,16 @@
 
 
 <section id="top_sect" class="second">
-<h2>Заполните информацию о себе</h2>
-<div class="sect_row">Как Вас зовут:
-    <input type="text" placeholder="(необходимо хотя бы имя)" id="fio_field" />
+<h2>Учетная запись</h2>
+
+<div class="sect_row">Ваш род деятельности: <select id="worker_type">
+    <option value="vis_form" selected>Визуализатор</option>
+    <option value="des_form">Дизайнер</option>
+</select></div>
+<div class="sect_row" style="color: red;display:none;" id="attention_message">Внимание!При смене рода деятельности предыдущая запись в базе данных будет удалена! Следующее изменение возможно на следующий день.</div>
+
+<div class="sect_row">ФИО:
+    <input type="text" placeholder="ФИО" id="fio_field" />
 </div>
 
 
@@ -320,16 +327,10 @@
              required/>
 </div>
 
-<div class="sect_row">Ваш email (для отправки чеков):
+<div class="sect_row">email (для чека об оплате подписки):
     <input type="text" id="email_field" placeholder="example@mail.ru"/>
 </div>
 
-
-<div class="sect_row">Ваш род деятельности: <select id="worker_type">
-    <option value="vis_form" selected>Визуализатор</option>
-    <option value="des_form">Дизайнер</option>
-</select></div>
-<div class="sect_row" style="color: red;display:none;" id="attention_message">Внимание!При смене рода деятельности предыдущая запись в базе данных будет удалена! Следующее изменение возможно на следующий день.</div>
 </section>
 
 
@@ -340,8 +341,15 @@
     <option value="from_1_to_3">от 1 года до 3 лет</option>
     <option value="more_3">более 3 лет</option>
 </select></div>
+<div class="sect_row">Опыт указывайте исходя из:<br/></div>
+<ul>
+  <li>2 круга правок;</li>
+  <li>Pro модели только из своей базы;</li>
+  <li>мин. стоимость 400 руб/м<sup>2</sup>;</li>
+</ul>
 
-<div class="sect_row">Стоимость 1 м<sup>2</sup> (минимализм):
+
+<div class="sect_row">Стоимость 1 м<sup>2</sup> (стиль - минимализм и около этого):
     <input type="text"
            placeholder="(рубли)"
            id="min_style_price"
@@ -349,7 +357,7 @@
            required />
 </div>
 
-<div class="sect_row">Стоимость 1 м<sup>2</sup> (классика):
+<div class="sect_row">Стоимость 1 м<sup>2</sup> (стиль - классика и около этого):
     <input type="text"
            placeholder="(рубли)"
            id="classic_style_price"
