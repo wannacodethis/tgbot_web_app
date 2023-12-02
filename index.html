@@ -10,6 +10,8 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="robots" content="noindex,nofollow" />
     <title></title>
+    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"-->
+    <!--script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script-->
     <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
     <script>
         function setThemeClass() {
@@ -17,6 +19,8 @@
         }
         Telegram.WebApp.onEvent('themeChanged', setThemeClass);
         setThemeClass();
+
+
     </script>
     <style>
         body {
@@ -323,7 +327,6 @@
              name="phone_field"
              id="phone_field"
              placeholder="(для связи с вами при заказе)"
-             pattern="(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?"
              required/>
 </div>
 
@@ -485,7 +488,11 @@
 <div class="viewport-stable_border"></div-->
 
 <script type="application/javascript">
-
+//const input = document.querySelector("#phone_field");
+//console.log(input)
+//window.intlTelInput(input, {
+//  utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+//});
     /*
      * This is a demo code for Telegram WebApp for Bots
      * It contains basic examples of how to use the API
@@ -927,11 +934,11 @@
 <script type="application/javascript">
     const mask = (selector) => {
         function setMask() {
-            let matrix = '+7 ### ### ## ##';
-            let i = 1,
+            let matrix = '+# ### ### ## ##';
+            let i = 0,
                 val = this.value.replace(/\D/g, '');
 
-            this.value = matrix.substr(0, 2) + matrix.substr(2).replace(/(?!\+)./g, function(a) {
+            this.value = matrix.substr(0, 1) + matrix.substr(1).replace(/(?!\+)./g, function(a) {
                 return /[#\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
             });
         }
@@ -939,7 +946,7 @@
         let inputs = document.querySelectorAll(selector);
 
         inputs.forEach(input => {
-            if (!input.value) input.value = '+7';
+            if (!input.value) input.value = '+';
             input.addEventListener('input', setMask);
             input.addEventListener('focus', setMask);
             input.addEventListener('blur', setMask);
@@ -964,7 +971,9 @@
 
     document.getElementById('des_form').style.display="none";
 
-    mask('input[name="phone_field"]')
+
+
+    //mask('input[name="phone_field"]')
 
     //const phone_field = document.getElementById('phone_field');
     //phone_field.addEventListener('input', handlePhoneInput, false);
