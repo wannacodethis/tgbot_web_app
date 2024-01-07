@@ -369,6 +369,13 @@
            required />
 </div>
 
+<div class="sect_row">Ссылка на ваше портфолио:
+    <input type="text"
+           placeholder="(https://...)"
+           id="portfolio_url"
+           required />
+</div>
+
 </div>
 
 <div id="des_form" class="worker_form">
@@ -561,6 +568,8 @@
                     document.querySelector('#vis_experience').value = obj.experience;
                     document.querySelector('#min_style_price').value = obj.min_style_price;
                     document.querySelector('#classic_style_price').value = obj.classic_style_price;
+                    document.querySelector('#portfolio_url').value = obj.portfolio_url;
+
                     workerTypeSel.value = 'vis_form';
                 } else if (obj.valueType === "DesInfo"){
                     workerTypeSel.value = 'des_form';
@@ -689,6 +698,7 @@
             t.min_style_price = v ? v : 0;
             v = parseInt(document.querySelector('#classic_style_price').value, 10);
             t.classic_style_price = v ? v : 0;
+            t.portfolio_url = document.querySelector('#portfolio_url').value;
             return t;
         },
         makeDesData(){
