@@ -334,6 +334,10 @@
     <input type="text" id="email_field" placeholder="example@mail.ru"/>
 </div>
 
+<div class="city_row">Ваш город (разница по времени с Москвой):
+    <input type="text" id="city_field" placeholder="Иркутск(-5ч)"/>
+</div>
+
 </section>
 
 
@@ -564,6 +568,8 @@
                 document.querySelector('#fio_field').value = obj.fio;
                 document.querySelector('#phone_field').value = obj.phone;
                 document.querySelector('#email_field').value = obj.email;
+                document.querySelector('#city_field').value = obj.city ? obj.city : "";
+
                 if(obj.valueType === "VisInfo"){
                     document.querySelector('#vis_experience').value = obj.experience;
                     document.querySelector('#min_style_price').value = obj.min_style_price;
@@ -687,6 +693,8 @@
             t.fio = document.querySelector('#fio_field').value;
             t.phone = document.querySelector('#phone_field').value;
             t.email = document.querySelector('#email_field').value;
+            t.city = document.querySelector('#city_field').value;
+
             //t.type = document.querySelector('#worker_type').value;
             return t;
         },
