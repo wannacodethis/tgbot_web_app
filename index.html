@@ -334,7 +334,7 @@
     <input type="text" id="email_field" placeholder="example@mail.ru"/>
 </div>
 
-<div class="city_row">Ваш город (разница по времени с Москвой):
+<div class="sect_row">Ваш город (разница по времени с Москвой):
     <input type="text" id="city_field" placeholder="Иркутск(-5ч)"/>
 </div>
 
@@ -578,6 +578,7 @@
 
                     workerTypeSel.value = 'vis_form';
                 } else if (obj.valueType === "DesInfo"){
+                    document.querySelector('#city_field').visibility='hidden';
                     workerTypeSel.value = 'des_form';
                     document.querySelector('#des_work_area').value = obj.work_area;
                     let all_payment_id = document.querySelectorAll('input[name="des_price"]');
